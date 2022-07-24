@@ -33,13 +33,7 @@ export default class MySceneObjects {
     const uri = "https://cdn-content-ingress.altvr.com/uploads/audio_clip/audio/1793021533619224851/ogg_220173__gameaudio__spacey-1up-power-up.ogg"
 
     //this.appMain.music = new BABYLON.Sound("cello", "sounds/cellolong.wav", this.appMain._scene, null, { loop: true, autoplay: true });
-    this.appMain.music = new BABYLON.Sound("Test", uri, this.appMain._scene, null, { loop: true, autoplay: true });
-
-    var v = this.appMain.music.getVolume();
-    this.appMain.music.setVolume(.1);
-    v = this.appMain.music.getVolume();
-
-
+    this.appMain.music = new BABYLON.Sound("Test", uri, this.appMain._scene, null, { loop: false, autoplay: true, volume: .5 });
   }
 
 }
