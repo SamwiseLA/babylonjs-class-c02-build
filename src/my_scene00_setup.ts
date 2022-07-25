@@ -40,7 +40,7 @@ export default class MySceneSetUp {
     //this.appMain._light = new BABYLON.DirectionalLight("dir01", lightDir, this.appMain._scene);
     this.appMain._light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0), this.appMain._scene);
     
-    this.appMain._light.intensity = 0.7;
+    this.appMain._light.intensity = 0.75;
 
     //this.appMain._light.position = new BABYLON.Vector3(0, 150, 70);
     

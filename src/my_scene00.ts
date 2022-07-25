@@ -33,6 +33,7 @@ export default class MyScene {
   ////////////////////////////////
 
   public box: BABYLON.Mesh;
+  public house: BABYLON.Mesh[] = [undefined];
 
   public yeti: BABYLON.AbstractMesh[] = [undefined, undefined, undefined];
   public alien: BABYLON.AbstractMesh = undefined;
@@ -96,6 +97,17 @@ export default class MyScene {
   async StartScene(): Promise<void> {
     
     this.OBJMod.SpawnTestBox();
+
+    this.OBJMod.SpawnMultipleBoxes();
+
+    this.house[0] = this.OBJMod.SpawnBarn();
+    this.house[0].position.z = -4;
+    this.house[0].position.x = 2;
+    this.house[0].rotation.y = BABYLON.Tools.ToRadians(-30)
+    this.house.push(this.OBJMod.SpawnBarn());
+    this.house[1].position.z = -4;
+    this.house[1].position.x = 4;
+    this.house[1].rotation.y = BABYLON.Tools.ToRadians(30)
 
     this.OBJMod.EnvironmentNodes();
 
