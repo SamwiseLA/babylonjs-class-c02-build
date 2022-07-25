@@ -26,15 +26,23 @@ export default class MySceneObjects {
   }
 
   EnvironmentNodes(): void {
+
+    // Ground
+
     this.appMain.ground = BABYLON.MeshBuilder.CreateGround("ground", {
       width: 10,
       height: 10,
     });
 
-    // Load the sound and play it automatically once ready
+    // Load the Sound 
+    //
+    // and play it automatically once ready
+    //
 
-    const uri =
-      "https://cdn-content-ingress.altvr.com/uploads/audio_clip/audio/1793021533619224851/ogg_220173__gameaudio__spacey-1up-power-up.ogg";
+    //const uri =
+    //  "https://cdn-content-ingress.altvr.com/uploads/audio_clip/audio/1793021533619224851/ogg_220173__gameaudio__spacey-1up-power-up.ogg";
+
+    const uri = "https://cdn-content-ingress.altvr.com/uploads/audio_clip/audio/1734282589813867336/ogg_Girl_From_Ipanema_-_Frank_Sinatra.ogg"
 
     //this.appMain.music = new BABYLON.Sound("cello", "sounds/cellolong.wav", this.appMain._scene, null, { loop: true, autoplay: true });
     this.appMain.music = new BABYLON.Sound(
@@ -42,12 +50,21 @@ export default class MySceneObjects {
       uri,
       this.appMain._scene,
       null,
-      { loop: false, autoplay: true, volume: 0.5 }
+      { loop: false, autoplay: true, volume: 0.05 }
     );
 
     //this.appMain.music = new BABYLON.Sound("sound2", uri, this.appMain._scene);
 
-    // Load the sound, give it time to load and play it every 3 seconds
+    //this.IntervalSound();
+
+  }
+
+  IntervalSound(){
+
+    // Load Repeating the sound, 
+    // give it time to load and play it every 3 seconds
+    // 
+
     const bounce = new BABYLON.Sound(
       "bounce",
       "https://cdn-content-ingress.altvr.com/uploads/audio_clip/audio/1907681589261763077/ogg_321808__lloydevans09__pvc-pipe-hit-3.ogg",
@@ -59,5 +76,7 @@ export default class MySceneObjects {
     this.appMain.METHMod.DelayIt(10)  
 
     setInterval(() => bounce.play(), 3000);
+
   }
+
 }
