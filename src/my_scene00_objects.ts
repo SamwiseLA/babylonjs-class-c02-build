@@ -55,6 +55,11 @@ export default class MySceneObjects {
       null,
       { loop: false, autoplay: false, volume: 0.2 }
     );
+
+    while(bounce === undefined){
+      this.appMain.METHMod.DelayIt(2)
+    }
+
     setInterval(() => bounce.play(), 3000);
   }
 }
