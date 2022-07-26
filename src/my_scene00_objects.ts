@@ -203,17 +203,39 @@ export default class MySceneObjects {
       "https://cdn-content-ingress.altvr.com/uploads/audio_clip/audio/1734282589813867336/ogg_Girl_From_Ipanema_-_Frank_Sinatra.ogg";
 
     //this.appMain.music = new BABYLON.Sound("cello", "sounds/cellolong.wav", this.appMain._scene, null, { loop: true, autoplay: true });
-    this.appMain.music = new BABYLON.Sound(
-      "sound1",
-      uri,
-      this.appMain._scene,
-      null,
-      { loop: false, autoplay: true, volume: 0.05 }
-    );
 
     //this.appMain.music = new BABYLON.Sound("sound2", uri, this.appMain._scene);
 
     //this.IntervalSound();
+    const startMusic = new BABYLON.Sound(
+      "sound1",
+      uri,
+      this.appMain._scene,
+      null,
+      { loop: true, autoplay: true, volume: 0.05 }
+    );
+
+    var playing = false;
+    document.onclick = () => {
+      if (playing) {
+        startMusic.stop();
+        startMusic.dispose();
+        this.appMain.music.stop();
+        this.appMain.music.dispose(); 
+      } else {
+        startMusic.stop();
+        startMusic.dispose();
+        this.appMain.music = new BABYLON.Sound(
+          "sound1",
+          uri,
+          this.appMain._scene,
+          null,
+          { loop: true, autoplay: true, volume: 0.05 }
+        );
+        this.appMain.music.play();
+      }
+      playing = !playing;
+    };
   }
 
   IntervalSound() {
