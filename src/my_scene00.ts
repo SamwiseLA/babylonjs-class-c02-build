@@ -120,7 +120,7 @@ export default class MyScene {
     this.barn[0].position.x = 2;
     this.barn[0].rotation.y = BABYLON.Tools.ToRadians(-30);
     textMesh = this.METHMod.DisplayText(
-      "This Barn is Barn[0]",
+      "This Barn is Barn[0]: 2 Textures on 1 Mesh, Wood Walls & Front Door",
       1,
       undefined,
       undefined,
