@@ -42,6 +42,8 @@ export default class MySceneSetUp {
     
     this.appMain._light.intensity = 0.75;
 
+    this.appMain._camera.wheelPrecision = 20; //Mouse wheel speed
+
     //this.appMain._light.position = new BABYLON.Vector3(0, 150, 70);
     
   }
