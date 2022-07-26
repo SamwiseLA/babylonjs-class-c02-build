@@ -13,10 +13,7 @@ export default class MySceneObjects {
   SpawnTestBox(): void {
     this.appMain.METHMod.DMM("SpawnBox");
 
-    const mat = new BABYLON.StandardMaterial(
-      "Material",
-      this.appMain._scene
-    );
+    const mat = new BABYLON.StandardMaterial("Material", this.appMain._scene);
     mat.diffuseColor = BABYLON.Color3.Green();
 
     // Our built-in 'box' shape. Params: name, options, scene
@@ -41,42 +38,43 @@ export default class MySceneObjects {
   SpawnBarn(): BABYLON.Mesh {
     this.appMain.METHMod.DMM("SpawnHouse");
 
-    const mat = [new BABYLON.StandardMaterial(
-      "House Material",
-      this.appMain._scene
-    )];
+    const mat = [
+      new BABYLON.StandardMaterial("House Material", this.appMain._scene),
+    ];
 
-    mat.push(new BABYLON.StandardMaterial(
-      "Roof Material",
-      this.appMain._scene
-    ));
+    mat.push(
+      new BABYLON.StandardMaterial("Roof Material", this.appMain._scene)
+    );
 
-    mat.push(new BABYLON.StandardMaterial(
-      "Front Barn Material",
-      this.appMain._scene
-    ));
+    mat.push(
+      new BABYLON.StandardMaterial("Front Barn Material", this.appMain._scene)
+    );
 
-    mat[0].diffuseColor = new BABYLON.Color3(175/255,150/255,0);
-    mat[1].diffuseColor = new BABYLON.Color3(100/255,100/255,0);
+    mat[0].diffuseColor = new BABYLON.Color3(175 / 255, 150 / 255, 0);
+    mat[1].diffuseColor = new BABYLON.Color3(100 / 255, 100 / 255, 0);
     //mat[2].diffuseColor = new BABYLON.Color3(1, 1, 0);
 
     //options parameter to set different images on each side
     const faceUV = [];
     faceUV[0] = new BABYLON.Vector4(0.0, 0.0, 1, 1.0); //rear face
     faceUV[1] = new BABYLON.Vector4(0.0, 0.0, 0.2, 1.0); //front face
-    faceUV[2] = new BABYLON.Vector4(0.0, 0.0, .75, 1.0); //right side
-    faceUV[3] = new BABYLON.Vector4(0.0, 0.0, .75, 1.0); //left side
+    faceUV[2] = new BABYLON.Vector4(0.0, 0.0, 0.75, 1.0); //right side
+    faceUV[3] = new BABYLON.Vector4(0.0, 0.0, 0.75, 1.0); //left side
 
     // Our built-in 'box' shape. Params: name, options, scene
-    const barn = BABYLON.MeshBuilder.CreateBox("box", {width: 1, faceUV: faceUV, wrap: true});
+    const barn = BABYLON.MeshBuilder.CreateBox("box", {
+      width: 1,
+      faceUV: faceUV,
+      wrap: true,
+    });
 
     var multimat = new BABYLON.MultiMaterial("multi", this.appMain._scene);
-        multimat.subMaterials.push(mat[0]);
-        multimat.subMaterials.push(mat[2]);
+    multimat.subMaterials.push(mat[0]);
+    multimat.subMaterials.push(mat[2]);
 
     //apply material
-    barn.subMeshes=[];
-	  var verticesCount=barn.getTotalVertices();
+    barn.subMeshes = [];
+    var verticesCount = barn.getTotalVertices();
 
     barn.subMeshes.push(new BABYLON.SubMesh(0, 0, verticesCount, 0, 6, barn));
     barn.subMeshes.push(new BABYLON.SubMesh(1, 1, verticesCount, 6, 6, barn));
@@ -85,34 +83,45 @@ export default class MySceneObjects {
     barn.subMeshes.push(new BABYLON.SubMesh(0, 4, verticesCount, 24, 6, barn));
     barn.subMeshes.push(new BABYLON.SubMesh(0, 5, verticesCount, 30, 6, barn));
 
-    barn.material = multimat; 
+    barn.material = multimat;
 
     barn.scaling = new BABYLON.Vector3(1, 1, 1.5);
 
     barn.position.y = barn.scaling.y / 2; //box created with default size so height is 1
 
-    const roof = BABYLON.MeshBuilder.CreateCylinder("roof", {diameter: 1.3, height: 1.2, tessellation: 7});
+    const roof = BABYLON.MeshBuilder.CreateCylinder("roof", {
+      diameter: 1.3,
+      height: 1.2,
+      tessellation: 7,
+    });
     roof.parent = barn;
     roof.material = mat[1];
 
-    roof.scaling.x =  .75
-    roof.scaling.y = .825
+    roof.scaling.x = 0.75;
+    roof.scaling.y = 0.825;
     roof.rotation.z = Math.PI / 2;
     roof.rotation.y = Math.PI / 2;
 
-    roof.position.y = 1.22 / 2
+    roof.position.y = 1.22 / 2;
 
-    mat[0].diffuseTexture = new BABYLON.Texture("https://cdn-content-ingress.altvr.com/uploads/photo/image/2053976466940494379/barnWall.png", this.appMain._scene);
-    mat[1].diffuseTexture = new BABYLON.Texture("https://assets.babylonjs.com/environments/roof.jpg", this.appMain._scene);
-    mat[2].diffuseTexture = new BABYLON.Texture("https://assets.babylonjs.com/environments/semihouse.png", this.appMain._scene)
-    
-    const matfront = [new BABYLON.StandardMaterial(
-      "House Front Material",
+    mat[0].diffuseTexture = new BABYLON.Texture(
+      "https://cdn-content-ingress.altvr.com/uploads/photo/image/2053976466940494379/barnWall.png",
       this.appMain._scene
-    )];
+    );
+    mat[1].diffuseTexture = new BABYLON.Texture(
+      "https://assets.babylonjs.com/environments/roof.jpg",
+      this.appMain._scene
+    );
+    mat[2].diffuseTexture = new BABYLON.Texture(
+      "https://assets.babylonjs.com/environments/semihouse.png",
+      this.appMain._scene
+    );
 
-    return barn
+    const matfront = [
+      new BABYLON.StandardMaterial("House Front Material", this.appMain._scene),
+    ];
 
+    return barn;
   }
 
   SpawnMultipleBoxes(): void {
@@ -128,10 +137,16 @@ export default class MySceneObjects {
     mat[1].diffuseColor = BABYLON.Color3.Red();
     mat[2].diffuseColor = BABYLON.Color3.Blue();
 
-    let boxTextureRed = new BABYLON.Texture("https://dl.dropbox.com/s/d774xc5km3l1gst/Floor-Stone-Portuguesa-Ground-Texture-Sidewalk-5224213.jpg?dl=0", this.appMain._scene);
-    let boxTextureBlue = new BABYLON.Texture("https://image.shutterstock.com/image-photo/basalt-stones-background-reynisfjara-beach-600w-2124570419.jpg", this.appMain._scene);
+    let boxTextureRed = new BABYLON.Texture(
+      "https://dl.dropbox.com/s/d774xc5km3l1gst/Floor-Stone-Portuguesa-Ground-Texture-Sidewalk-5224213.jpg?dl=0",
+      this.appMain._scene
+    );
+    let boxTextureBlue = new BABYLON.Texture(
+      "https://image.shutterstock.com/image-photo/basalt-stones-background-reynisfjara-beach-600w-2124570419.jpg",
+      this.appMain._scene
+    );
 
-    mat[1].diffuseTexture = boxTextureRed
+    mat[1].diffuseTexture = boxTextureRed;
     mat[2].diffuseTexture = boxTextureBlue;
 
     const box: BABYLON.Mesh[] = [undefined, undefined, undefined];
@@ -186,8 +201,14 @@ export default class MySceneObjects {
       height: 10,
     });
 
-    const mat = new BABYLON.StandardMaterial("groundMaterial", this.appMain._scene)
-    mat.diffuseTexture = new BABYLON.Texture("https://www.babylonjs-playground.com/textures/floor.png", this.appMain._scene);
+    const mat = new BABYLON.StandardMaterial(
+      "groundMaterial",
+      this.appMain._scene
+    );
+    mat.diffuseTexture = new BABYLON.Texture(
+      "https://www.babylonjs-playground.com/textures/floor.png",
+      this.appMain._scene
+    );
 
     this.appMain.ground.material = mat;
 
@@ -207,7 +228,7 @@ export default class MySceneObjects {
     //this.appMain.music = new BABYLON.Sound("sound2", uri, this.appMain._scene);
 
     //this.IntervalSound();
-    const startMusic = new BABYLON.Sound(
+    var startMusic = new BABYLON.Sound(
       "sound1",
       uri,
       this.appMain._scene,
@@ -218,20 +239,25 @@ export default class MySceneObjects {
     var playing = false;
     document.onclick = () => {
       if (playing) {
-        startMusic.stop();
-        startMusic.dispose();
-        this.appMain.music.stop();
-        this.appMain.music.dispose(); 
+        if (startMusic) {
+          startMusic.stop();
+          startMusic.dispose();
+          startMusic = undefined;
+        }
+        this.appMain.music.pause();
       } else {
-        startMusic.stop();
-        startMusic.dispose();
-        this.appMain.music = new BABYLON.Sound(
-          "sound1",
-          uri,
-          this.appMain._scene,
-          null,
-          { loop: true, autoplay: true, volume: 0.05 }
-        );
+        if (startMusic) {
+          startMusic.stop();
+          startMusic.dispose();
+          startMusic = undefined;
+          this.appMain.music = new BABYLON.Sound(
+            "sound1",
+            uri,
+            this.appMain._scene,
+            null,
+            { loop: true, autoplay: true, volume: 0.05 }
+          );
+        }
         this.appMain.music.play();
       }
       playing = !playing;
