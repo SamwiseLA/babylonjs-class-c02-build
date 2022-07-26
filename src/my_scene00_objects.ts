@@ -51,12 +51,41 @@ export default class MySceneObjects {
       this.appMain._scene
     ));
 
+    mat.push(new BABYLON.StandardMaterial(
+      "Front Barn Material",
+      this.appMain._scene
+    ));
+
     mat[0].diffuseColor = new BABYLON.Color3(175/255,150/255,0);
     mat[1].diffuseColor = new BABYLON.Color3(100/255,100/255,0);
+    //mat[2].diffuseColor = new BABYLON.Color3(1, 1, 0);
+
+    //options parameter to set different images on each side
+    const faceUV = [];
+    faceUV[0] = new BABYLON.Vector4(0.0, 0.0, 1, 1.0); //rear face
+    faceUV[1] = new BABYLON.Vector4(0.0, 0.0, 0.2, 1.0); //front face
+    faceUV[2] = new BABYLON.Vector4(0.0, 0.0, .75, 1.0); //right side
+    faceUV[3] = new BABYLON.Vector4(0.0, 0.0, .75, 1.0); //left side
 
     // Our built-in 'box' shape. Params: name, options, scene
-    const barn = BABYLON.MeshBuilder.CreateBox("box", {});
-    barn.material = mat[0];
+    const barn = BABYLON.MeshBuilder.CreateBox("box", {width: 1, faceUV: faceUV, wrap: true});
+
+    var multimat = new BABYLON.MultiMaterial("multi", this.appMain._scene);
+        multimat.subMaterials.push(mat[0]);
+        multimat.subMaterials.push(mat[2]);
+
+    //apply material
+    barn.subMeshes=[];
+	  var verticesCount=barn.getTotalVertices();
+
+    barn.subMeshes.push(new BABYLON.SubMesh(0, 0, verticesCount, 0, 6, barn));
+    barn.subMeshes.push(new BABYLON.SubMesh(1, 1, verticesCount, 6, 6, barn));
+    barn.subMeshes.push(new BABYLON.SubMesh(0, 2, verticesCount, 12, 6, barn));
+    barn.subMeshes.push(new BABYLON.SubMesh(0, 3, verticesCount, 18, 6, barn));
+    barn.subMeshes.push(new BABYLON.SubMesh(0, 4, verticesCount, 24, 6, barn));
+    barn.subMeshes.push(new BABYLON.SubMesh(0, 5, verticesCount, 30, 6, barn));
+
+    barn.material = multimat; 
 
     barn.scaling = new BABYLON.Vector3(1, 1, 1.5);
 
@@ -75,7 +104,13 @@ export default class MySceneObjects {
 
     mat[0].diffuseTexture = new BABYLON.Texture("https://cdn-content-ingress.altvr.com/uploads/photo/image/2053976466940494379/barnWall.png", this.appMain._scene);
     mat[1].diffuseTexture = new BABYLON.Texture("https://assets.babylonjs.com/environments/roof.jpg", this.appMain._scene);
+    mat[2].diffuseTexture = new BABYLON.Texture("https://assets.babylonjs.com/environments/semihouse.png", this.appMain._scene)
     
+    const matfront = [new BABYLON.StandardMaterial(
+      "House Front Material",
+      this.appMain._scene
+    )];
+
     return barn
 
   }
