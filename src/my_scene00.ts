@@ -2,7 +2,7 @@ import * as BABYLON from "babylonjs";
 import "@babylonjs/loaders/glTF";
 import "babylonjs-loaders";
 
-// Import App Modules 
+// Import App Modules
 
 import MySceneSetUp from "./my_scene00_setup";
 import MySceneObjects from "./my_scene00_objects";
@@ -33,7 +33,7 @@ export default class MyScene {
   ////////////////////////////////
 
   public box: BABYLON.Mesh;
-  public house: BABYLON.Mesh[] = [undefined];
+  public barn: BABYLON.Mesh[] = [undefined];
 
   public yeti: BABYLON.AbstractMesh[] = [undefined, undefined, undefined];
   public alien: BABYLON.AbstractMesh = undefined;
@@ -60,7 +60,6 @@ export default class MyScene {
   }
 
   async createScene(): Promise<BABYLON.Scene> {
-
     //Moduel for Scene Setup
     this.SUMod = new MySceneSetUp();
     this.SUMod.appMain = this;
@@ -89,30 +88,83 @@ export default class MyScene {
     this.StartScene();
 
     return this._scene;
-
   }
 
   // Code for Scene
 
   async StartScene(): Promise<void> {
-    
+    var textMesh = this.METHMod.DisplayText(
+      "app: babylon-class-c02-build",
+      1,
+      undefined,
+      undefined,
+      "yellow",
+      "blue"
+    );
+    textMesh.position.y = .1;
+    textMesh.position.z = -4;
+    textMesh.scaling = new BABYLON.Vector3(2, 2, 2);
+    textMesh.rotation = new BABYLON.Vector3(
+      BABYLON.Tools.ToRadians(90),
+      BABYLON.Tools.ToRadians(0),
+      BABYLON.Tools.ToRadians(0)
+    );
+    textMesh.parent = this.ground;
+
     this.OBJMod.SpawnTestBox();
 
     this.OBJMod.SpawnMultipleBoxes();
 
-    this.house[0] = this.OBJMod.SpawnBarn();
-    this.house[0].position.z = -4;
-    this.house[0].position.x = 2;
-    this.house[0].rotation.y = BABYLON.Tools.ToRadians(-30)
-    this.house.push(this.OBJMod.SpawnBarn());
-    this.house[1].position.z = -4;
-    this.house[1].position.x = 4;
-    this.house[1].rotation.y = BABYLON.Tools.ToRadians(30)
+    this.barn[0] = this.OBJMod.SpawnBarn();
+    this.barn[0].position.z = -4.1;
+    this.barn[0].position.x = 2;
+    this.barn[0].rotation.y = BABYLON.Tools.ToRadians(-30);
+    textMesh = this.METHMod.DisplayText(
+      "This Barn is Barn[0]",
+      1,
+      undefined,
+      undefined,
+      "blue",
+      "yellow"
+    );
+    textMesh.position.y = 1;
+    textMesh.position.z = -0.5;
+    textMesh.scaling = new BABYLON.Vector3(1, 1, 1);
+    textMesh.parent = this.barn[0];
+
+    this.barn.push(this.OBJMod.SpawnBarn());
+    this.barn[1].position.z = -4.1;
+    this.barn[1].position.x = 4;
+    this.barn[1].rotation.y = BABYLON.Tools.ToRadians(30);
+    textMesh = this.METHMod.DisplayText(
+      "This Barn is Barn[1]",
+      1,
+      undefined,
+      undefined,
+      "blue",
+      "yellow"
+    );
+    textMesh.position.y = 1;
+    textMesh.position.z = -0.5;
+    textMesh.scaling = new BABYLON.Vector3(1, 1, 1);
+    textMesh.parent = this.barn[1];
+
+    this.barn.push(this.barn[0].clone(`Clone1`));
+    this.barn[2].position.z = -2.65;
+    this.barn[2].position.x = 3;
+    this.barn[2].rotation.y = BABYLON.Tools.ToRadians(0);
+
+    textMesh = this.METHMod.DisplayText(
+      "This Barn[2] is a Clone of Barn[0]",
+      1
+    );
+    textMesh.position.y = 1;
+    textMesh.position.z = -0.5;
+    textMesh.scaling = new BABYLON.Vector3(1, 1, 1);
+    textMesh.parent = this.barn[2];
 
     this.OBJMod.EnvironmentNodes();
 
     //await this.METHMod.DelayIt(1);
-
   }
-
 }

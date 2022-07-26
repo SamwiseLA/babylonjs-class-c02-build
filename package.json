@@ -51,6 +51,7 @@
     "atob": "^2.1.2",
     "babylon": "^6.18.0",
     "babylonjs-gltf2interface": "^4.2.2",
+    "babylonjs-serializers": "^5.16.0",
     "balanced-match": "^1.0.2",
     "base": "^0.11.2",
     "base64-js": "^1.5.1",

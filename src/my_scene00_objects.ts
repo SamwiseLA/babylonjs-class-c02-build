@@ -33,13 +33,21 @@ export default class MySceneObjects {
     //this.appMain.box.rotation = this._light.direction;
     //this.appMain.box.scaling.x = .1;
     //this.appMain.box.scaling.z = 0.1;
+
+    const meshPosition = new BABYLON.Vector3(0, .7, -.5);
+    const meshScaling = new BABYLON.Vector3((1 / this.appMain.box.scaling.x), (1 / this.appMain.box.scaling.y), (1 / this.appMain.box.scaling.z));
+
+    var textMesh = this.appMain.METHMod.DisplayText("Green Single Global Box", 1,undefined,undefined, "black", "green");
+    textMesh.position = meshPosition;
+    textMesh.scaling = meshScaling
+    textMesh.parent = this.appMain.box
   }
 
   SpawnBarn(): BABYLON.Mesh {
-    this.appMain.METHMod.DMM("SpawnHouse");
+    this.appMain.METHMod.DMM("SpawnBarn");
 
     const mat = [
-      new BABYLON.StandardMaterial("House Material", this.appMain._scene),
+      new BABYLON.StandardMaterial("Barn Material", this.appMain._scene),
     ];
 
     mat.push(
@@ -189,6 +197,25 @@ export default class MySceneObjects {
       BABYLON.Tools.ToRadians(-30),
       BABYLON.Tools.ToRadians(0)
     );
+
+    const meshPosition = new BABYLON.Vector3(0, .7, -.5);
+    const meshScaling = new BABYLON.Vector3(1.1, 1.1, 1.1);
+
+    var textMesh = this.appMain.METHMod.DisplayText("Yellow Box[0] [1 of 3]", 1,undefined,undefined, "black", "yellow");
+    textMesh.position = meshPosition;
+    textMesh.scaling = meshScaling
+    textMesh.parent = box[0]
+
+    textMesh = this.appMain.METHMod.DisplayText("Red Box[1] w/ Texture [2 of 3]", 1,undefined,undefined, "white", "red");
+    textMesh.position = meshPosition;
+    textMesh.position.y = .85;
+    textMesh.scaling = meshScaling
+    textMesh.parent = box[1]
+
+    textMesh = this.appMain.METHMod.DisplayText("Blue Box[2] w/ Texture [3 of 3]", 1,undefined,undefined, "white", "blue");
+    textMesh.position = meshPosition;
+    textMesh.scaling = meshScaling
+    textMesh.parent = box[2]
   }
 
   // Environment Node Objects (Ground, Trees, Buildings, Sound)
