@@ -255,28 +255,28 @@ export default class MySceneObjects {
     //this.appMain.music = new BABYLON.Sound("sound2", uri, this.appMain._scene);
 
     //this.IntervalSound();
-    var startMusic = new BABYLON.Sound(
-      "sound1",
-      uri,
-      this.appMain._scene,
-      null,
-      { loop: true, autoplay: true, volume: 0.05 }
-    );
+
+    //BABYLON.Engine.audioEngine.useCustomUnlockedButton = true
+
+    // var startMusic = new BABYLON.Sound(
+    //   "sound1",
+    //   uri,
+    //   this.appMain._scene,
+    //   null,
+    //   { loop: true, autoplay: true, volume: 0.05 }
+    // );
+    // BABYLON.Engine.audioEngine?.unlock()
 
     var playing = false;
     document.onclick = () => {
+      BABYLON.Engine.audioEngine?.unlock()
+
       if (playing) {
-        if (startMusic) {
-          startMusic.stop();
-          startMusic.dispose();
-          startMusic = undefined;
+        if (this.appMain.music){
+          this.appMain.music.pause();
         }
-        this.appMain.music.pause();
       } else {
-        if (startMusic) {
-          startMusic.stop();
-          startMusic.dispose();
-          startMusic = undefined;
+        if (!this.appMain.music) {
           this.appMain.music = new BABYLON.Sound(
             "sound1",
             uri,

@@ -94,16 +94,16 @@ export default class MyScene {
 
   async StartScene(): Promise<void> {
     var textMesh = this.METHMod.DisplayText(
-      "app: babylon-class-c02-build",
+      "app: babylon-class-c02-build (CLICK TO TOGGLE MUSIC)",
       undefined,
       undefined,
       undefined,
       "yellow",
       "blue"
     );
-    textMesh.position.y = .1;
-    textMesh.position.z = -4;
-    textMesh.scaling = new BABYLON.Vector3(2, 2, 2);
+    textMesh.position.y = .01;
+    textMesh.position.z = -4.85;
+    textMesh.scaling = new BABYLON.Vector3(3, 3, 3);
     textMesh.rotation = new BABYLON.Vector3(
       BABYLON.Tools.ToRadians(90),
       BABYLON.Tools.ToRadians(0),
