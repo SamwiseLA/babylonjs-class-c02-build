@@ -37,7 +37,7 @@ export default class MySceneObjects {
     const meshPosition = new BABYLON.Vector3(0, .7, -.5);
     const meshScaling = new BABYLON.Vector3((1 / this.appMain.box.scaling.x), (1 / this.appMain.box.scaling.y), (1 / this.appMain.box.scaling.z));
 
-    var textMesh = this.appMain.METHMod.DisplayText("Green Single Global Box", 1,undefined,undefined, "black", "green");
+    var textMesh = this.appMain.METHMod.DisplayText("Green Single Global Box", undefined,undefined,undefined, "black", "green");
     textMesh.position = meshPosition;
     textMesh.scaling = meshScaling
     textMesh.parent = this.appMain.box
@@ -201,18 +201,18 @@ export default class MySceneObjects {
     const meshPosition = new BABYLON.Vector3(0, .7, -.5);
     const meshScaling = new BABYLON.Vector3(1.1, 1.1, 1.1);
 
-    var textMesh = this.appMain.METHMod.DisplayText("Yellow Box[0] [1 of 3]", 1,undefined,undefined, "black", "yellow");
+    var textMesh = this.appMain.METHMod.DisplayText("Yellow Box[0] [1 of 3]", undefined,undefined,undefined, "black", "yellow");
     textMesh.position = meshPosition;
     textMesh.scaling = meshScaling
     textMesh.parent = box[0]
 
-    textMesh = this.appMain.METHMod.DisplayText("Red Box[1] w/ Texture [2 of 3]", 1,undefined,undefined, "white", "red");
+    textMesh = this.appMain.METHMod.DisplayText("Red Box[1] w/ Texture [2 of 3]", undefined,undefined,undefined, "white", "red");
     textMesh.position = meshPosition;
     textMesh.position.y = .85;
     textMesh.scaling = meshScaling
     textMesh.parent = box[1]
 
-    textMesh = this.appMain.METHMod.DisplayText("Blue Box[2] w/ Texture [3 of 3]", 1,undefined,undefined, "white", "blue");
+    textMesh = this.appMain.METHMod.DisplayText("Blue Box[2] w/ Texture [3 of 3]", undefined,undefined,undefined, "white", "blue");
     textMesh.position = meshPosition;
     textMesh.scaling = meshScaling
     textMesh.parent = box[2]

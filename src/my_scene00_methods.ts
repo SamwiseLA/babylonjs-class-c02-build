@@ -21,8 +21,8 @@ export default class MySceneMethods {
 
   DisplayText(
     text: string,
-    width =  4,
-    x = 0,
+    width = 0,
+    x = 5,
     y = 30,
     color = "black",
     clearColor = "white",
@@ -30,8 +30,16 @@ export default class MySceneMethods {
   ): BABYLON.Mesh {
     this.DMM("DisplayText");
 
-    const groundWidth = 4 * (width / 4)
-    const groundHeight = .1
+    const textLen = text.length;
+    const widthCalc = textLen / 45;
+
+    var widthUse = width;
+    if (width === 0){
+      widthUse = widthCalc;
+    }
+
+    const groundWidth = 4 * (widthUse / 4);
+    const groundHeight = .07;
 
     const mesh = BABYLON.MeshBuilder.CreatePlane(
       "textMesh",
@@ -39,13 +47,13 @@ export default class MySceneMethods {
       this.appMain._scene
     );
 
-    const  compress = 4 * (4 / width) * .01
-
     //Create dynamic texture
-    const textWidth = 512 * (1.6 + compress);
-    const textHeight = 256 / 6;
+    const resolution = (512 + 256);
+    const resolutionAdj = (512 + 256) / (4 / groundWidth)
+    const textWidth = (resolutionAdj * 3);
+    const textHeight = (resolution / 2) / 8;
 
-    var textureText = new BABYLON.DynamicTexture(
+    var textureText = new BABYLON.DynamicTexture( 
       "dynamicTextureText",
       { width: textWidth, height: textHeight },
       this.appMain._scene,

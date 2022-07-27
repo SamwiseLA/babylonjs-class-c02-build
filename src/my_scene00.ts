@@ -95,7 +95,7 @@ export default class MyScene {
   async StartScene(): Promise<void> {
     var textMesh = this.METHMod.DisplayText(
       "app: babylon-class-c02-build",
-      1,
+      undefined,
       undefined,
       undefined,
       "yellow",
@@ -119,18 +119,6 @@ export default class MyScene {
     this.barn[0].position.z = -4.1;
     this.barn[0].position.x = 2;
     this.barn[0].rotation.y = BABYLON.Tools.ToRadians(-30);
-    textMesh = this.METHMod.DisplayText(
-      "This Barn is Barn[0]: 2 Textures on 1 Mesh, Wood Walls & Front Door",
-      1,
-      undefined,
-      undefined,
-      "blue",
-      "yellow"
-    );
-    textMesh.position.y = 1;
-    textMesh.position.z = -0.5;
-    textMesh.scaling = new BABYLON.Vector3(1, 1, 1);
-    textMesh.parent = this.barn[0];
 
     this.barn.push(this.OBJMod.SpawnBarn());
     this.barn[1].position.z = -4.1;
@@ -138,7 +126,7 @@ export default class MyScene {
     this.barn[1].rotation.y = BABYLON.Tools.ToRadians(30);
     textMesh = this.METHMod.DisplayText(
       "This Barn is Barn[1]",
-      1,
+      undefined,
       undefined,
       undefined,
       "blue",
@@ -155,8 +143,25 @@ export default class MyScene {
     this.barn[2].rotation.y = BABYLON.Tools.ToRadians(0);
 
     textMesh = this.METHMod.DisplayText(
+      "This Barn is Barn[0]: 2 Textures on 1 Mesh, Wood Walls & Front Door",
+      undefined,
+      undefined,
+      undefined,
+      "blue",
+      "yellow"
+    );
+    textMesh.position.y = 1;
+    textMesh.position.z = -0.5;
+    textMesh.scaling = new BABYLON.Vector3(1, 1, 1);
+    textMesh.parent = this.barn[0];
+
+    textMesh = this.METHMod.DisplayText(
       "This Barn[2] is a Clone of Barn[0]",
-      1
+      undefined,
+      undefined,
+      undefined,
+      "blue",
+      "yellow"
     );
     textMesh.position.y = 1;
     textMesh.position.z = -0.5;
